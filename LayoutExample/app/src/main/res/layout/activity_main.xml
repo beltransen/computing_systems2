@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:background="@android:color/holo_blue_bright"
+    tools:context=".MainActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:background="@android:color/holo_purple">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Lo morado es un ConstraintLayout (peso 1) dentro de un LinearLayout (azul claro) con orientacion vertical (filas)
+            Abajo, un LinearLayout (negro, orientacion vertical, peso 1), usado para organizar filas de botones (LinearLayout horizontales, usando varios colores y pesos para ver su efecto). "
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:padding="5dp"
+            android:background="@android:color/white"/>
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:background="@android:color/black"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="2"
+            android:background="@color/colorAccent">
+
+            <Button
+                android:id="@+id/buttonLeft1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="2"
+                android:text="Boton 1 Fila 1\nPeso 2" />
+
+            <Button
+                android:id="@+id/buttonRight1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:text="Btn 2 F 1\nPeso 1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary">
+
+            <Button
+                android:id="@+id/buttonLeft2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:text="Boton 1 Fila 2" />
+
+            <Button
+                android:id="@+id/buttonCenter2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:text="Boton 2 Fila 2" />
+
+            <Button
+                android:id="@+id/buttonRight2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:text="Boton 3 Fila 2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark">
+
+            <Button
+                android:id="@+id/buttonLeft3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:text="B1 F3\nPeso 1" />
+
+            <Button
+                android:id="@+id/buttonRight3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="4"
+                android:text="Boton 2 Fila 3\nPeso 4" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

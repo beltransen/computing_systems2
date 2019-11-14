@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Checklist</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Checklist</string>
+    <string name="nav_header_subtitle">by Jorge Beltrán</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_deletelist">Delete list</string>
+    <string name="list_name_hint">List name</string>
+    <string name="create_list">Create list</string>
+    <string name="new_task">New task</string>
+    <string name="add">ADD</string>
+</resources>

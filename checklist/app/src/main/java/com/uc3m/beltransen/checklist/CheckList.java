@@ -1,8 +1,11 @@
 package com.uc3m.beltransen.checklist;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
-public class CheckList {
+public class CheckList implements Parcelable {
     private String name;
     private ArrayList<Task> tasks;
     private boolean isOpen;
@@ -18,6 +21,36 @@ public class CheckList {
         this.tasks = new ArrayList<Task>();
         isOpen = true;
     }
+
+    protected CheckList(Parcel in) {
+        name = in.readString();
+        tasks = in.createTypedArrayList(Task.CREATOR);
+        isOpen = in.readByte() != 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeTypedList(tasks);
+        dest.writeByte((byte) (isOpen ? 1 : 0));
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<CheckList> CREATOR = new Creator<CheckList>() {
+        @Override
+        public CheckList createFromParcel(Parcel in) {
+            return new CheckList(in);
+        }
+
+        @Override
+        public CheckList[] newArray(int size) {
+            return new CheckList[size];
+        }
+    };
 
     public void addTask(Task e){
         this.tasks.add(e);

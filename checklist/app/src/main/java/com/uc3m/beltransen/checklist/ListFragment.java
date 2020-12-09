@@ -4,8 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -44,7 +42,6 @@ public class ListFragment extends Fragment {
     private ListView tasksListView;
     private EditText newTaskEditText;
     private Button newTaskButton;
-//    private TasksArrayAdapter expensesArrayAdapter;
     private ArrayAdapter<String> tasksAdapter;
 
     private OnFragmentInteractionListener mListener;
@@ -61,20 +58,21 @@ public class ListFragment extends Fragment {
      * @return A new instance of fragment ListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ListFragment newInstance(CheckList checkList) {
+    static ListFragment newInstance(CheckList checkList) {
         ListFragment fragment = new ListFragment();
-        fragment.checkList = checkList;
+        Bundle args = new Bundle();
+        args.putParcelable("list", checkList);
+        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (checkList == null){
-            checkList = new CheckList();
-        }
         if (getArguments() != null) {
-            checkList.setName(getArguments().getString(LIST_ID_TAG));
+            checkList = (CheckList) getArguments().getParcelable("list");
+        }else{
+            checkList = new CheckList();
         }
     }
 
@@ -215,31 +213,3 @@ public class ListFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 }
-
-    /*
-    public class TasksArrayAdapter extends ArrayAdapter<Task> {
-
-        private ArrayList<Task> tasks;
-
-        public TasksArrayAdapter(@NonNull Context context, ArrayList<Task> tasks) {
-            super(context, 0, tasks);
-        }
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            Task task = tasks.get(position);
-            if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(
-                        R.layout.item_expense, parent, false);
-            }
-            TextView expenseTitle = (TextView) convertView.findViewById(R.id.expense_title);
-            expenseTitle.setText(task.getName());
-            TextView expenseAmount = (TextView) convertView.findViewById(R.id.amount);
-            expenseAmount.setText(task.getAmount()+"€");
-            TextView expenseDate = (TextView) convertView.findViewById(R.id.expense_date);
-            expenseDate.setText(android.text.format.DateFormat
-                    .format("yyyy-MM-dd hh:mm:ss a", task.getDate()).toString());
-
-            return convertView;
-        }
-
-    }*/

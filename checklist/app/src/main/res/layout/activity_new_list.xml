@@ -42,4 +42,15 @@
             android:textColor="@color/design_default_color_background"
             android:text="@string/create_list"/>
     </LinearLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/my_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </androidx.viewpager.widget.ViewPager>
 </RelativeLayout>

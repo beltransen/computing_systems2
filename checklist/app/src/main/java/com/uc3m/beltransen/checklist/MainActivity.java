@@ -24,7 +24,6 @@ import android.widget.Toast;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -86,10 +85,11 @@ public class MainActivity extends AppCompatActivity{
                 CheckList g = new CheckList(line);
                 checkLists.add(g);
             }
+            scanner.close();
         }catch (IOException e) {
             return;
         }
-        checklistCollectionPageAdapter.setData(checkLists);
+        checklistCollectionPageAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -102,7 +102,8 @@ public class MainActivity extends AppCompatActivity{
                 Log.d("MainActivity","New list created: '"+name+"'");
                 // Create and append new checklist
                 checkLists.add(new CheckList(name));
-                updateLists(); // Update files and UI
+                checklistCollectionPageAdapter.notifyDataSetChanged();
+                updateLists(); // Update files
                 viewPager.setCurrentItem(checkLists.size()); // Move pager to new checklist
                 break;
             case RESULT_CANCELED:
@@ -126,7 +127,6 @@ public class MainActivity extends AppCompatActivity{
             e.printStackTrace();
             Toast.makeText(this,"Error creating new checklist", Toast.LENGTH_SHORT).show();
         }
-        checklistCollectionPageAdapter.setData(checkLists);
     }
 
     @Override
@@ -163,8 +163,9 @@ public class MainActivity extends AppCompatActivity{
 
             // Remove checklist from list
             checkLists.remove(index);
+            checklistCollectionPageAdapter.notifyDataSetChanged();
 
-            // Update checklists.txt and UI
+            // Update checklists.txt
             updateLists();
             return true;
         }
@@ -183,12 +184,10 @@ public class MainActivity extends AppCompatActivity{
 
         public ChecklistCollectionPageAdapter(@NonNull FragmentManager fm, ArrayList<CheckList> checkLists) {
             super(fm);
-            this.checkLists = (ArrayList<CheckList>) checkLists.clone();
+            this.checkLists = checkLists;
         }
 
         public void setData(ArrayList<CheckList> checkLists){
-            this.checkLists.clear();
-            this.checkLists = (ArrayList<CheckList>) checkLists.clone();
             notifyDataSetChanged();
         }
         @NonNull
@@ -218,6 +217,5 @@ public class MainActivity extends AppCompatActivity{
             }
             return POSITION_NONE; // Allow viewpager to delete fragment view and show next available
         }
-
     }
 }

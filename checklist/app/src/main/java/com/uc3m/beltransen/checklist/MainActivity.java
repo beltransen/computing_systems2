@@ -156,6 +156,11 @@ public class MainActivity extends AppCompatActivity{
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_deletelist) {
             int index = viewPager.getCurrentItem();
+            if(index==0 && checkLists.size()==0){
+                Toast.makeText(getApplicationContext(),
+                        "No checklists to delete", Toast.LENGTH_SHORT).show();
+                return false;
+            }
             Log.d("MainActivity","Deleted list: '"+checkLists.get(index).getName()+"'");
             // Remove corresponding checklist file
             File file = new File(getFilesDir()+"/"+checkLists.get(index).getName().replace(' ','_')+".txt");

@@ -16,15 +16,21 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <EditText
                 android:id="@+id/list_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                tools:ignore="TextContrastCheck"
+                android:hint="@string/list_name_hint"
+                android:importantForAutofill="no"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:hint="@string/list_name_hint"/>
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"/>
+
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -34,6 +40,7 @@
         android:orientation="horizontal"
         android:gravity="center_horizontal"
         android:layout_alignParentBottom="true">
+
         <Button
             android:id="@+id/btn_newlist"
             android:layout_width="match_parent"
@@ -42,15 +49,4 @@
             android:textColor="@color/design_default_color_background"
             android:text="@string/create_list"/>
     </LinearLayout>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/my_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </androidx.viewpager.widget.ViewPager>
 </RelativeLayout>
